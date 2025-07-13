@@ -14,10 +14,13 @@
             flex-direction: column;
             justify-content: center;
             background: linear-gradient(to bottom, #fddde6, #f8a5c2);
+            position: relative;
+            overflow: hidden;
         }
         h1 {
             font-size: 36px;
             margin: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
         h2 {
             font-size: 28px;
@@ -26,13 +29,70 @@
         p {
             font-size: 22px;
             margin: 10px;
+            line-height: 1.5;
+        }
+        .details {
+            font-size: 20px;
+            margin: 15px;
+            font-style: italic;
+        }
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 10s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        .flower:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .flower:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .flower:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .flower:nth-child(4) { left: 70%; animation-delay: 6s; }
+        .flower:nth-child(5) { left: 90%; animation-delay: 8s; }
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
     <h1>Приглашение на свадьбу</h1>
     <h2>Вика и Илья</h2>
+    <p>Дорогие друзья и близкие!</p>
+    <p>С радостью приглашаем вас разделить с нами самый важный день в нашей жизни!</p>
     <p>Дата: 26.06.2026</p>
-    <p>С нетерпением ждём вас на празднике!</p>
+    <p class="details">Место: Ресторан "Лунный свет", ул. Цветочная, 12, Москва</p>
+    <p class="details">Время: 16:00 – Сбор гостей, 17:00 – Начало церемонии</p>
+    <p>С нетерпением ждём вас на нашем празднике любви!</p>
+    <p>Пожалуйста, подтвердите своё присутствие до 10.06.2026: <br> 
+       Вика: +7 (XXX) XXX-XX-XX, Илья: +7 (XXX) XXX-XX-XX</p>
+    
+    <!-- Анимация цветков -->
+    <div class="flower">🌸</div>
+    <div class="flower">🌷</div>
+    <div class="flower">🌺</div>
+    <div class="flower">🌸</div>
+    <div class="flower">🌷</div>
+
+    <!-- Фоновая музыка -->
+    <audio autoplay loop>
+        <source src="https://www.royaltyfree-music.com/samples/wedding-march.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает воспроизведение аудио.
+    </audio>
+
+    <script>
+        // Добавляем автозапуск музыки только после взаимодействия пользователя
+        document.body.addEventListener('click', () => {
+            const audio = document.querySelector('audio');
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Ошибка воспроизведения:", error));
+            }
+        });
+    </script>
 </body>
 </html>
