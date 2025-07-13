@@ -50,11 +50,6 @@
                 transform: translateY(100vh) rotate(360deg);
             }
         }
-        .flower:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .flower:nth-child(2) { left: 30%; animation-delay: 2s; }
-        .flower:nth-child(3) { left: 50%; animation-delay: 4s; }
-        .flower:nth-child(4) { left: 70%; animation-delay: 6s; }
-        .flower:nth-child(5) { left: 90%; animation-delay: 8s; }
         audio {
             display: none;
         }
@@ -72,18 +67,11 @@
     <p>Пожалуйста, подтвердите своё присутствие до 10.06.2026: <br> 
        Вика: +7 (XXX) XXX-XX-XX, Илья: +7 (XXX) XXX-XX-XX</p>
     
-    <!-- Анимация цветков -->
-    <div class="flower">🌸</div>
-    <div class="flower">🌷</div>
-    <div class="flower">🌺</div>
-    <div class="flower">🌸</div>
-    <div class="flower">🌷</div>
-
     <!-- Фоновая музыка -->
     <audio autoplay loop>
-    <source src="Svadebnyj_marsh_-_Vals_Mendelssona_652317.mp3" type="audio/mpeg">
-    Ваш браузер не поддерживает воспроизведение аудио.
-</audio>
+        <source src="Svadebnyj_marsh_-_Vals_Mendelssona_652317.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает воспроизведение аудио.
+    </audio>
 
     <script>
         // Добавляем автозапуск музыки только после взаимодействия пользователя
@@ -93,6 +81,24 @@
                 audio.play().catch(error => console.log("Ошибка воспроизведения:", error));
             }
         });
+
+        // Создание цветков по всему экрану
+        function createFlowers() {
+            const flowerTypes = ['🌸', '🌷', '🌺'];
+            const numberOfFlowers = 20; // Увеличьте количество для большего эффекта
+
+            for (let i = 0; i < numberOfFlowers; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+                flower.style.left = `${Math.random() * 100}%`; // Рандомная позиция по горизонтали
+                flower.style.animationDelay = `${Math.random() * 10}s`; // Рандомная задержка
+                document.body.appendChild(flower);
+            }
+        }
+
+        // Вызов функции при загрузке страницы
+        window.onload = createFlowers;
     </script>
 </body>
 </html>
