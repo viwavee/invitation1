@@ -5,36 +5,35 @@
     <title>Приглашение на свадьбу</title>
     <style>
         body {
-            height: 100vh;
             margin: 0;
             font-family: "Georgia", serif;
             color: #880E4F;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             background: linear-gradient(to bottom, #fddde6, #f8a5c2);
             position: relative;
-            overflow: hidden;
+            overflow: auto; /* Разрешаем прокрутку */
         }
         h1 {
             font-size: 36px;
-            margin: 10px;
+            margin: 20px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
         h2 {
             font-size: 28px;
-            margin: 10px;
+            margin: 15px;
         }
         p {
             font-size: 22px;
-            margin: 10px;
+            margin: 15px;
             line-height: 1.5;
         }
         .details {
             font-size: 20px;
             margin: 15px;
             font-style: italic;
+        }
+        .section {
+            padding: 40px 20px;
         }
         .flower {
             position: absolute;
@@ -48,7 +47,7 @@
                 transform: translateY(-100vh) rotate(0deg);
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(200vh) rotate(360deg); /* Увеличено для прокрутки */
             }
         }
         audio {
@@ -57,17 +56,36 @@
     </style>
 </head>
 <body>
-    <h1>Приглашение на свадьбу</h1>
-    <h2>Вика и Илья</h2>
-    <p>Дорогие друзья и близкие!</p>
-    <p>С радостью приглашаем вас разделить с нами самый важный день в нашей жизни!</p>
-    <p>Дата: 26.06.2026</p>
-    <p class="details">Место: Ресторан "Лунный свет", ул. Цветочная, 12, Москва</p>
-    <p class="details">Время: 16:00 – Сбор гостей, 17:00 – Начало церемонии</p>
-    <p>С нетерпением ждём вас на нашем празднике любви!</p>
-    <p>Пожалуйста, подтвердите своё присутствие до 10.06.2026: <br> 
-       Вика: +7 (XXX) XXX-XX-XX, Илья: +7 (XXX) XXX-XX-XX</p>
-    
+    <div class="section">
+        <h1>Приглашение на свадьбу</h1>
+        <h2>Вика и Илья</h2>
+        <p>Дорогие друзья и близкие!</p>
+        <p>С радостью приглашаем вас разделить с нами самый важный день в нашей жизни!</p>
+    </div>
+
+    <div class="section">
+        <p>Дата: 26.06.2026</p>
+        <p class="details">Место: Ресторан "Лунный свет", ул. Цветочная, 12, Москва</p>
+        <p class="details">Время: 16:00 – Сбор гостей, 17:00 – Начало церемонии</p>
+    </div>
+
+    <div class="section">
+        <p>Мы с нетерпением ждём вас на нашем празднике любви и обещаем незабываемую атмосферу!</p>
+        <p>Этот день станет особенным благодаря вашему присутствию. Приходите с улыбкой и хорошим настроением!</p>
+    </div>
+
+    <div class="section">
+        <p>Пожалуйста, подтвердите своё присутствие до 10.06.2026:</p>
+        <p>Вика: +7 (XXX) XXX-XX-XX</p>
+        <p>Илья: +7 (XXX) XXX-XX-XX</p>
+    </div>
+
+    <div class="section">
+        <p>Дополнительная информация:</p>
+        <p>Дресс-код: элегантный стиль. Цветы и подарки приветствуются, но не обязательны — ваше присутствие для нас самое ценное!</p>
+        <p>Спасибо, что вы с нами в этот важный момент!</p>
+    </div>
+
     <!-- Фоновая музыка -->
     <audio autoplay loop>
         <source src="Svadebnyj_marsh_-_Vals_Mendelssona_652317.mp3" type="audio/mpeg">
@@ -92,11 +110,9 @@
                 const flower = document.createElement('div');
                 flower.className = 'flower';
                 flower.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
-                // Рандомная позиция только по краям (0-20% или 80-100%)
                 const isLeftEdge = Math.random() < 0.5;
                 flower.style.left = isLeftEdge ? `${Math.random() * 20}%` : `${80 + Math.random() * 20}%`;
                 flower.style.animationDelay = `${Math.random() * 10}s`;
-                // Добавляем цветок после определения позиции
                 setTimeout(() => document.body.appendChild(flower), 0);
             }
         }
