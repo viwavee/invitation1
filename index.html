@@ -41,6 +41,7 @@
             font-size: 30px;
             animation: fall 10s linear infinite;
             opacity: 0.7;
+            transform: translateY(-100vh); /* Начальная позиция вне экрана */
         }
         @keyframes fall {
             0% {
@@ -69,9 +70,9 @@
     
     <!-- Фоновая музыка -->
     <audio autoplay loop>
-    <source src="wedding_march.mp3" type="audio/mpeg">
-    Ваш браузер не поддерживает воспроизведение аудио.
-</audio>
+        <source src="Svadebnyj_marsh_-_Vals_Mendelssona_652317.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает воспроизведение аудио.
+    </audio>
 
     <script>
         // Добавляем автозапуск музыки только после взаимодействия пользователя
@@ -82,18 +83,21 @@
             }
         });
 
-        // Создание цветков по всему экрану
+        // Создание цветков только по краям
         function createFlowers() {
             const flowerTypes = ['🌺'];
-            const numberOfFlowers = 20; // Увеличьте количество для большего эффекта
+            const numberOfFlowers = 20;
 
             for (let i = 0; i < numberOfFlowers; i++) {
                 const flower = document.createElement('div');
                 flower.className = 'flower';
                 flower.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
-                flower.style.left = `${Math.random() * 100}%`; // Рандомная позиция по горизонтали
-                flower.style.animationDelay = `${Math.random() * 10}s`; // Рандомная задержка
-                document.body.appendChild(flower);
+                // Рандомная позиция только по краям (0-20% или 80-100%)
+                const isLeftEdge = Math.random() < 0.5;
+                flower.style.left = isLeftEdge ? `${Math.random() * 20}%` : `${80 + Math.random() * 20}%`;
+                flower.style.animationDelay = `${Math.random() * 10}s`;
+                // Добавляем цветок после определения позиции
+                setTimeout(() => document.body.appendChild(flower), 0);
             }
         }
 
